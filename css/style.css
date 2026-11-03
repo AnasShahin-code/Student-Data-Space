@@ -1,0 +1,155 @@
+/*
+ * style.css
+ * ---------
+ * Our own styles. Bootstrap does most of the work, so this file only
+ * adds the few things Bootstrap does not give us:
+ *   - the gradient banner on the homepage
+ *   - the round avatars in the student table
+ *   - a couple of small polish touches
+ *
+ * It is loaded AFTER Bootstrap in header.php, so anything here wins.
+ */
+
+/* Keep the footer at the bottom even on a short page */
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f6f9;
+}
+
+body > footer {
+    margin-top: auto;
+}
+
+
+/* ===== Homepage banner ===== */
+
+.hero {
+    /* A gradient between two blues. Bootstrap has no gradient utility
+       for this, so we write it ourselves. */
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+}
+
+.hero-icon {
+    font-size: 6rem;
+    opacity: 0.35;
+}
+
+
+/* ===== Cards on the homepage ===== */
+
+.card-icon {
+    font-size: 2.5rem;
+}
+
+/* A small lift on hover so the cards feel clickable.
+   The transition makes it smooth instead of jumpy. */
+.card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1) !important;
+}
+
+
+/* ===== Avatars in the student table ===== */
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    /* object-fit: cover crops the image to a square instead of
+       squashing it, so faces still look right */
+    object-fit: cover;
+    border: 2px solid #dee2e6;
+}
+
+/* Shown when a student has no picture: their first initial
+   on a coloured circle */
+.avatar-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+
+/* ===== Picture preview on the add / update forms ===== */
+
+.preview-img {
+    max-width: 160px;
+    max-height: 160px;
+    object-fit: cover;
+}
+
+
+/* ===== Table ===== */
+
+.table td {
+    vertical-align: middle;
+}
+
+/* The address column can be long, so cap how much we show */
+.table td.small {
+    max-width: 240px;
+}
+
+/* Keep the columns at a sensible width instead of letting the browser
+   squeeze them until email addresses wrap one character per line.
+   The .table-responsive wrapper then scrolls sideways if it has to.
+   Below 576px we drop the minimum, because the email column is hidden
+   there anyway and the remaining columns fit without any scrolling. */
+@media (min-width: 576px) {
+    .table {
+        min-width: 640px;
+    }
+}
+
+
+/* ===== Form validation colours =====
+   Bootstrap already styles .is-valid and .is-invalid. We only make the
+   green tick a little less loud, because on this form almost every
+   field turns green and it was distracting. */
+
+.form-control.is-valid {
+    border-color: #a3cfbb;
+    background-image: none;   /* hide Bootstrap's green tick icon */
+}
+
+
+/* ===== Pagination ===== */
+
+.pagination {
+    margin-bottom: 0;
+}
+
+/* On a narrow phone the page numbers were running off the screen, so
+   we shrink them a bit below 576px. This is a media query, the same
+   idea Bootstrap uses for its own breakpoints. */
+@media (max-width: 575.98px) {
+    .page-link {
+        padding: 0.3rem 0.55rem;
+        font-size: 0.85rem;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* ===== Navbar ===== */
+
+/* Make the link of the page we are on clearly the active one */
+.navbar-dark .navbar-nav .nav-link.active {
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+}

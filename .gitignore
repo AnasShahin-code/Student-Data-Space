@@ -1,0 +1,39 @@
+# ---------------------------------------------------------------
+# Live database settings - contains the real hosting password,
+# so it must never be committed. Use config.example.php instead.
+# ---------------------------------------------------------------
+includes/config.php
+
+# ---------------------------------------------------------------
+# Uploaded profile pictures.
+# We keep the .htaccess that protects the folder, and the sample_*
+# pictures the SQL file refers to, but not the images that get
+# uploaded while using the site.
+# ---------------------------------------------------------------
+uploads/*
+!uploads/.htaccess
+!uploads/sample_*.png
+
+# ---------------------------------------------------------------
+# Editor and operating system clutter
+# ---------------------------------------------------------------
+.vscode/
+.idea/
+*.code-workspace
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---------------------------------------------------------------
+# Logs and temporary files
+# ---------------------------------------------------------------
+*.log
+*.tmp
+error_log
+
+# ---------------------------------------------------------------
+# Tooling folders we do not use but might appear
+# ---------------------------------------------------------------
+/vendor/
+/node_modules/
+.remember/

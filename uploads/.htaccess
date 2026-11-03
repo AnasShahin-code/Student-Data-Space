@@ -1,0 +1,39 @@
+# Stop Apache from RUNNING anything in this folder.
+#
+# Even though handle_picture_upload() checks that every upload is a real
+# image, this is a second line of defence: if a .php file ever did get
+# in here, the server must refuse to execute it.
+
+# --- Main protection: refuse to serve these file types at all ---
+# This works no matter how PHP is installed on the server, which is why
+# it is the rule we rely on.
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|php8|phps|cgi|pl|py|asp|aspx|sh|htaccess)$">
+    <IfModule mod_authz_core.c>
+        # Apache 2.4
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2 and older
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- Extra belt-and-braces: switch the PHP engine off here ---
+# php_flag only exists when PHP runs as an Apache module (like it does
+# in XAMPP). On hosts where PHP runs as CGI or FPM - which is normal on
+# shared and free hosting - an unguarded php_flag line makes Apache
+# return "500 Internal Server Error" for this whole folder, so the
+# <IfModule> wrappers below are what keep the site portable.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+
+# Never show a file listing of this folder
+Options -Indexes
