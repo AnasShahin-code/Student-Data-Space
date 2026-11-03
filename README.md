@@ -91,8 +91,6 @@ Web_2_assign/
 │
 ├── .gitignore                Keeps secrets and uploads out of Git
 ├── README.md                 This file
-├── CODE_EXPLANATION.md       How each feature works, with code
-└── DEPLOYMENT.md             Putting it on GitHub and hosting it online
 ```
 
 ### A note on `.html` vs `.php`
@@ -373,9 +371,3 @@ Screenshots of each page are in the `screenshots/` folder:
 > dialog is on screen. Save it as `screenshots/10-delete-confirm.png`.
 
 ---
-
-For a walkthrough of **how** each feature works, with the relevant code,
-see **[CODE_EXPLANATION.md](CODE_EXPLANATION.md)**.
-
-To put the project on GitHub and host it online for free, see
-**[DEPLOYMENT.md](DEPLOYMENT.md)**.
